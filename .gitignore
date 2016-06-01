@@ -6,3 +6,7 @@ Homestead.json
 .env
 /.idea
 composer.lock
+/public/build
+/public/js
+/public/css
+/public/images
