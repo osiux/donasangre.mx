@@ -1,2 +1,12 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+$icon-font-path: '../../fonts/';
+$fa-font-path: $icon-font-path;
 
+@import "bootswatch/simplex/variables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
+@import "bootswatch/simplex/bootswatch";
+@import "font-awesome/scss/font-awesome";
+
+.user-nav {
+    margin-top: 40px;
+}
