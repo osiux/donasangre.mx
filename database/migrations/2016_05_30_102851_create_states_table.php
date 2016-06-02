@@ -12,10 +12,12 @@ class CreateStatesTable extends Migration
      */
     public function up()
     {
-        $table->string('code', 3);
-        $table->string('name', 150);
+        Schema::create('states', function(Blueprint $table) {
+            $table->string('code', 3);
+            $table->string('name', 150);
 
-        $table->primary('code');
+            $table->primary('code');
+        });
     }
 
     /**
