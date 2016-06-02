@@ -7,7 +7,7 @@ export default function() {
         request(request) {
             let token = ls.get('token')
 
-            if ( token !== nul || token !== 'undefined' ) {
+            if ( token !== null || token !== 'undefined' ) {
                 Vue.http.headers.common.Authorization = `Bearer ${token}`;
             }
 
