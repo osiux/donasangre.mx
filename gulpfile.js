@@ -12,8 +12,20 @@ if (gutils.env._.indexOf('watch') > -1) {
 }
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass('app.scss', 'public/css/app.css', {
+        includePaths: [
+            './node_modules'
+        ]
+    });
+
     mix.browserify('app.js');
+
+    mix.copy([
+        'node_modules/font-awesome/fonts',
+        'node_modules/bootstrap-sass/assets/fonts/bootstrap'
+    ], 'public/fonts');
+
+    mix.copy('resources/assets/images', 'public/images');
 
     mix.scripts([
         'node_modules/jquery/dist/jquery.js',

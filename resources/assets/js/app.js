@@ -1,8 +1,21 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import router from './router'
-import App from './components/app.vue'
+import { configRouter } from './router'
+import Interceptor from './interceptor'
+import App from './App.vue';
 
 Vue.use(VueResource)
+Vue.use(VueRouter)
+Vue.http.options.root = '/api';
+Vue.http.interceptors.push(Interceptor)
 
-router.start(App, 'body')
+const router = new VueRouter({
+    history: true,
+    saveScrollPosition: false,
+    linkActiveClass: 'active'
+})
+
+configRouter(router)
+
+router.start(App,'#app')

@@ -1,0 +1,61 @@
+<template>
+    <div>
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" v-link="{ name: 'home' }">
+                        <img src="/images/donasangre.png" alt="Dona Sangre">
+                    </a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="user-nav nav navbar-nav navbar-left" role="navigation">
+                        <li><a href="#">Lista de Donadores</a></li>
+                        <li><a href="#">Quiero donar</a></li>
+                    </ul>
+                    <ul class="user-nav nav navbar-nav navbar-right" role="navigation">
+                        <li class="dropdown" v-show="user.authenticated">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.name }}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Tu Perfil</a></li>
+                                <li><a href="#">Salir</a></li>
+                            </ul>
+                        </li>
+                        <li v-show="! user.authenticated"><a href="#">Entrar</a></li>
+                        <li v-show="! user.authenticated"><a href="#">Registro</a></li>
+                    </ul>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="container">
+                <router-view></router-view>
+            </div>
+
+            <hr>
+            <footer>
+                <p>Código disponible en <a href="https://github.com/osiux/donasangre.mx"><i class="fa fa-github-alt"></i> Github</a>. ¡Ayúdanos a mejorarlo! <span class="pull-right"><a href="#">Ayuda</a></span></p>
+                <p>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a> -</p>
+            </footer>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                user: {
+                    name: '',
+                    authenticated: false
+                }
+            }
+        }
+    }
+</script>

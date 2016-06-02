@@ -1,13 +1,33 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import ls from './services/ls'
+import Home from './components/Home.vue'
 
-Vue.use(VueRouter)
+export function configRouter (router) {
+    router.map({
+        '/': {
+            name: 'home',
+            component: Home
+        }
+    })
 
-const router = new VueRouter({
-    history: true,
-    linkActiveClass: 'active'
-})
+    router.redirect({
+        '*': '/'
+    })
 
-export default {
-    router
+    router.beforeEach(function(transition){
+        let token = ls.get('token')
+
+        if( transition.to.auth ){
+            if( ! token || token === null ){
+                transition.redirect('/login')
+            }
+        }
+
+        if( transition.to.guest ) {
+            if( token ){
+                transition.redirect('/')
+            }
+        }
+
+        transition.next()
+    })
 }
