@@ -26,8 +26,8 @@
                                 <li><a href="#">Salir</a></li>
                             </ul>
                         </li>
-                        <li v-show="! user.authenticated"><a href="#">Entrar</a></li>
-                        <li v-show="! user.authenticated"><a href="#">Registro</a></li>
+                        <li v-show="! user.authenticated"><a v-link="{ name: 'login' }">Entrar</a></li>
+                        <li v-show="! user.authenticated"><a v-link="{ name: 'register' }">Registro</a></li>
                     </ul>
                 </div><!--/.navbar-collapse -->
             </div>

@@ -1,11 +1,21 @@
 import ls from './services/ls'
 import Home from './components/Home.vue'
+import Register from './components/auth/Register.vue'
+import Login from './components/auth/Login.vue'
 
 export function configRouter (router) {
     router.map({
         '/': {
             name: 'home',
             component: Home
+        },
+        'register': {
+            name: 'register',
+            component: Register
+        },
+        'login': {
+            name: 'login',
+            component: Login
         }
     })
 
