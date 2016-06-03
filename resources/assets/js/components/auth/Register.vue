@@ -31,6 +31,8 @@
 
     export default {
         data() {
+            document.title = 'Registro :: Dona Sangre'
+
             return {
                 user: {
                     name:'',

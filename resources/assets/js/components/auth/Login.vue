@@ -24,6 +24,8 @@
 
     export default {
         data() {
+            document.title = 'Entrar :: Dona Sangre'
+
             return {
                 user: {
                     email: '',

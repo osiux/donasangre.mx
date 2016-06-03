@@ -5,6 +5,8 @@
 <script>
     export default {
         data() {
+            document.title = 'Inicio :: Dona Sangre'
+
             return {
 
             }
