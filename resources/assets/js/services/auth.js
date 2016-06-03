@@ -26,8 +26,40 @@ export default {
                 return response
             })
     },
+    logout() {
+        return new Promise((resolve, reject) => {
+            try {
+                ls.remove('token')
+                this.user.authenticated = false
+                resolve()
+            }catch(e) {
+                reject(e)
+            }
+        })
+    },
+    getToken() {
+        return new Promise((resolve, reject) => {
+            const token = ls.get('token')
+
+            if ( token ) {
+                resolve(token)
+            }else{
+                reject()
+            }
+        })
+    },
     authUser(token) {
         this.user.authenticated = true
         ls.set('token', token)
+    },
+    resetAuth() {
+        ls.remove('token')
+        this.user.authenticated = false
+        throw err
+    },
+    checkAuth() {
+        return this.getToken()
+            .then(this.authUser.bind(this))
+            .catch(this.resetAuth.bind(this))
     }
 }

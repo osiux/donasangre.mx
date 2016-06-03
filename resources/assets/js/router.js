@@ -1,4 +1,4 @@
-import ls from './services/ls'
+import auth from './services/auth'
 import Home from './components/Home.vue'
 import Register from './components/auth/Register.vue'
 import Login from './components/auth/Login.vue'
@@ -11,11 +11,13 @@ export function configRouter (router) {
         },
         'register': {
             name: 'register',
-            component: Register
+            component: Register,
+            guest: true
         },
         'login': {
             name: 'login',
-            component: Login
+            component: Login,
+            guest: true
         }
     })
 
@@ -24,19 +26,17 @@ export function configRouter (router) {
     })
 
     router.beforeEach(function(transition){
-        let token = ls.get('token')
-
-        if( transition.to.auth ){
-            if( ! token || token === null ){
-                transition.redirect('/login')
-            }
-        }
-
-        if( transition.to.guest ) {
-            if( token ){
-                transition.redirect('/')
-            }
-        }
+        auth.checkAuth()
+            .then(() => {
+                if ( transition.to.guest ) {
+                    transition.redirect('/')
+                }
+            })
+            .catch(() => {
+                if ( transition.to.auth ) {
+                    transition.redirect('login')
+                }
+            })
 
         transition.next()
     })

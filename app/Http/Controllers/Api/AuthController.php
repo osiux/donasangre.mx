@@ -15,14 +15,32 @@ use Tymon\JWTAuth\JWTAuth;
 class AuthController extends Controller
 {
     /**
+     * @var Request
+     */
+    protected $request;
+
+    /**
+     * @var JWTAuth
+     */
+    protected $jwtauth;
+
+    /**
+     * AuthController constructor.
      * @param Request $request
-     * @param Validator $validator
      * @param JWTAuth $jwtauth
+     */
+    public function __construct(Request $request, JWTAuth $jwtauth) {
+        $this->request = $request;
+        $this->jwtauth = $jwtauth;
+    }
+
+    /**
+     * @param Validator $validator
      * @return mixed
      */
-    public function register(Request $request, Validator $validator, JWTAuth $jwtauth)
+    public function register(Validator $validator)
     {
-        $validation = $validator->make($request->all(), [
+        $validation = $validator->make($this->request->all(), [
             'name'  =>  'required',
             'email' =>  'required|email|unique:users',
             'password'  =>  'required|confirmed',
@@ -38,7 +56,7 @@ class AuthController extends Controller
         // TODO: Change to repositories
         $user = User::create($data);
 
-        $token = $jwtauth->fromUser($user);
+        $token = $this->jwtauth->fromUser($user);
 
         $response = [
             'user' => $user,
@@ -50,8 +68,9 @@ class AuthController extends Controller
 
     /**
      * @param Request $request
+     * @param JWTAuth $jwtauth
      */
-    public function login(Request $request)
+    public function login(Request $request, JWTAuth $jwtauth)
     {
         $credentials = $this->request->only('email', 'password');
 
