@@ -19,13 +19,8 @@
                         <li><a href="#">Quiero donar</a></li>
                     </ul>
                     <ul class="user-nav nav navbar-nav navbar-right" role="navigation">
-                        <li class="dropdown" v-show="user.authenticated">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.name }}<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Tu Perfil</a></li>
-                                <li><a href="#">Salir</a></li>
-                            </ul>
-                        </li>
+                        <li v-show="user.authenticated"><a href="#">Tu Perfil</a></li>
+                        <li v-show="user.authenticated"><a @click.prevent="logout" href="#">Salir</a></li>
                         <li v-show="! user.authenticated"><a v-link="{ name: 'login' }">Entrar</a></li>
                         <li v-show="! user.authenticated"><a v-link="{ name: 'register' }">Registro</a></li>
                     </ul>
@@ -48,13 +43,20 @@
 </template>
 
 <script>
+    import auth from './services/auth'
+
     export default {
         data() {
             return {
-                user: {
-                    name: '',
-                    authenticated: false
-                }
+                user: auth.user
+            }
+        },
+        methods: {
+            logout: function() {
+                auth.logout()
+                    .then(() => {
+                        this.$router.go('login')
+                    })
             }
         }
     }
