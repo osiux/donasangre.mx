@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import NProgress from 'nprogress';
+import NProgress from 'nprogress'
 import ls from './ls'
 
 export default {

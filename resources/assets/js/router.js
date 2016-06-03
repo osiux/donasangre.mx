@@ -2,6 +2,7 @@ import auth from './services/auth'
 import Home from './components/Home.vue'
 import Register from './components/auth/Register.vue'
 import Login from './components/auth/Login.vue'
+import Profile from './components/Profile.vue'
 
 export function configRouter (router) {
     router.map({
@@ -18,6 +19,11 @@ export function configRouter (router) {
             name: 'login',
             component: Login,
             guest: true
+        },
+        'profile': {
+            name: 'profile',
+            component: Profile,
+            auth: true
         }
     })
 

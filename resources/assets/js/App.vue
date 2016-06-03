@@ -19,7 +19,7 @@
                         <li><a href="#">Quiero donar</a></li>
                     </ul>
                     <ul class="user-nav nav navbar-nav navbar-right" role="navigation">
-                        <li v-show="user.authenticated"><a href="#">Tu Perfil</a></li>
+                        <li v-show="user.authenticated"><a v-link="{ name: 'profile' }">Tu Perfil</a></li>
                         <li v-show="user.authenticated"><a @click.prevent="logout" href="#">Salir</a></li>
                         <li v-show="! user.authenticated"><a v-link="{ name: 'login' }">Entrar</a></li>
                         <li v-show="! user.authenticated"><a v-link="{ name: 'register' }">Registro</a></li>

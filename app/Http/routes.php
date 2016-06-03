@@ -18,4 +18,9 @@ $api->version('v1', ['namespace' => 'DonaSangre\Http\Controllers\Api'], function
     $api->post('register', 'AuthController@register');
     $api->post('login', 'AuthController@login');
     $api->post('refresh', 'AuthController@refreshToken');
+
+    $api->group(['middleware' => 'api.auth'], function($api) {
+        $api->get('me', 'UserController@getProfile');
+        $api->put('me', 'UserController@updateProfile');
+    });
 });
