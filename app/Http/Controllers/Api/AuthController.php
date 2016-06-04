@@ -67,10 +67,9 @@ class AuthController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param JWTAuth $jwtauth
+     * @return mixed
      */
-    public function login(Request $request, JWTAuth $jwtauth)
+    public function login()
     {
         $credentials = $this->request->only('email', 'password');
 

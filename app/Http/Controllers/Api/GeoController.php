@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class GeoController extends Controller
 {
     /**
-     * @var
+     * @var Request
      */
     protected $request;
 
