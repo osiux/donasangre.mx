@@ -19,6 +19,11 @@ $api->version('v1', ['namespace' => 'DonaSangre\Http\Controllers\Api'], function
     $api->post('login', 'AuthController@login');
     $api->post('refresh', 'AuthController@refreshToken');
 
+    $api->group(['prefix' => 'geo'], function ($api) {
+        $api->get('states', 'GeoController@getStates');
+        $api->get('states/{code}', 'GeoController@getState');
+    });
+
     $api->group(['middleware' => 'api.auth'], function($api) {
         $api->get('me', 'UserController@getProfile');
         $api->put('me', 'UserController@updateProfile');
