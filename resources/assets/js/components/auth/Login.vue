@@ -38,7 +38,7 @@
             login() {
                 auth.login(this.user)
                     .then(() => {
-                        this.$router.go('/')
+                        this.$router.go('donators')
                     })
                     .catch((response) => {
                             this.error = true

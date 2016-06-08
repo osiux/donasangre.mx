@@ -15,8 +15,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="user-nav nav navbar-nav navbar-left" role="navigation">
-                        <li><a href="#">Lista de Donadores</a></li>
-                        <li><a href="#">Quiero donar</a></li>
+                        <li><a v-link="{ name: 'donators' }">Lista de Donadores</a></li>
+                        <li v-if="user.authenticated"><a v-link="{ name: 'donators-register' }">Quiero donar</a></li>
                     </ul>
                     <ul class="user-nav nav navbar-nav navbar-right" role="navigation">
                         <li v-show="user.authenticated"><a v-link="{ name: 'profile' }">Tu Perfil</a></li>
@@ -36,7 +36,7 @@
             <hr>
             <footer>
                 <p>Código disponible en <a href="https://github.com/osiux/donasangre.mx"><i class="fa fa-github-alt"></i> Github</a>. ¡Ayúdanos a mejorarlo! <span class="pull-right"><a href="#">Ayuda</a></span></p>
-                <p>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a> -</p>
+                <p>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></p>
             </footer>
         </div>
     </div>
