@@ -7,7 +7,7 @@ import App from './App.vue';
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
-Vue.http.options.root = '/api';
+Vue.http.options.root = window.APIURL;
 Vue.http.interceptors.push(Interceptor)
 
 const router = new VueRouter({

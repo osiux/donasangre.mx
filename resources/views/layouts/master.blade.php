@@ -39,6 +39,9 @@
 @endif
     <div id="app"></div>
 
+    <script>
+        window.APIURL = '{{ env('API_URL') }}';
+    </script>
     <script src="{{ elixir('js/vendors.js') }}"></script>
     <script src="{{ elixir('js/app.js') }}"></script>
 </body>
