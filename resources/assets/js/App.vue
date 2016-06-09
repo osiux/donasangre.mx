@@ -15,14 +15,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="user-nav nav navbar-nav navbar-left" role="navigation">
-                        <li><a v-link="{ name: 'donators' }">Lista de Donadores</a></li>
-                        <li v-if="user.authenticated"><a v-link="{ name: 'donators-register' }">Quiero donar</a></li>
+                        <li v-link-active><a v-link="{ name: 'donators', exact: true }">Lista de Donadores</a></li>
+                        <li v-if="user.authenticated" v-link-active><a v-link="{ name: 'donators-register', exact: true }">Quiero donar</a></li>
                     </ul>
                     <ul class="user-nav nav navbar-nav navbar-right" role="navigation">
-                        <li v-show="user.authenticated"><a v-link="{ name: 'profile' }">Tu Perfil</a></li>
+                        <li v-show="user.authenticated" v-link-active><a v-link="{ name: 'profile' }">Tu Perfil</a></li>
                         <li v-show="user.authenticated"><a @click.prevent="logout" href="#">Salir</a></li>
-                        <li v-show="! user.authenticated"><a v-link="{ name: 'login' }">Entrar</a></li>
-                        <li v-show="! user.authenticated"><a v-link="{ name: 'register' }">Registro</a></li>
+                        <li v-show="! user.authenticated" v-link-active><a v-link="{ name: 'login' }">Entrar</a></li>
+                        <li v-show="! user.authenticated" v-link-active><a v-link="{ name: 'register' }">Registro</a></li>
                     </ul>
                 </div><!--/.navbar-collapse -->
             </div>
