@@ -44,8 +44,8 @@
                 <label>Expira el</label>
                 <datepicker
                         :value.sync="donator.expires_at"
-                        :format="yyyy-MM-dd"
-                        :show-reset-button="reset">
+                        format="yyyy-MM-dd"
+                        :show-reset-button="true">
                 </datepicker>
                 <p class="help-block">Después de esta fecha ya no aparecerás en el listado. Si lo dejas vacío, no expira.</p>
             </div>
@@ -56,18 +56,23 @@
 </template>
 
 <script>
-    // import { datepicker } from 'vue-strap/src/index.js'
+    import addWeeks from 'date-fns/add_weeks'
+    import format from 'date-fns/format'
+    import Datepicker from 'vue-strap/src/Datepicker.vue'
     import registered from './Registered.vue'
 
     export default {
         data() {
+            const now = new Date()
+            const future = addWeeks(now, 2)
+
             return {
                 donator: {
                     state: '',
                     blood_type: '',
                     show_email: true,
-                    show_phone: true,
-                    expires_at: (new Date()).getTime()
+                    show_phone: false,
+                    expires_at: format(future, 'YYYY-MM-DD')
                 }
             }
         },
@@ -77,7 +82,7 @@
             }
         },
         components: {
-            // datepicker,
+            Datepicker,
             registered
         }
     }
