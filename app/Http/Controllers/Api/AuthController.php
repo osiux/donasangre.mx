@@ -6,6 +6,7 @@ use DonaSangre\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Factory as Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\JWTAuth;
 
 /**
@@ -86,6 +87,18 @@ class AuthController extends Controller
 
     public function refreshToken()
     {
-        // TODO
+        $token = $this->jwtauth->getToken();
+
+        if( ! $token ) {
+            return $this->response->errorBadRequest('Token not provided');
+        }
+
+        try{
+            $token = $this->jwtauth->refresh($token);
+        } catch ( TokenInvalidException $e ){
+            return $this->response->errorUnauthorized('The token is invalid');
+        }
+
+        return $this->response->array(compact('token'));
     }
 }

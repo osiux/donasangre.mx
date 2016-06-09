@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Nprogress from 'nprogress'
 import ls from './services/ls'
+import Unauthorized from './unauthorized'
 
 export default function() {
     return {
@@ -15,6 +16,10 @@ export default function() {
         },
         response(response) {
             Nprogress.done()
+
+            if( response.data.message === 'Token has expired' ){
+                return Unauthorized.handle(response)
+            }
 
             if ( response.headers && response.headers.Authorization ) {
                 ls.set('token', response.headers.Authorization);

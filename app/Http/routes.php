@@ -17,7 +17,7 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', ['namespace' => 'DonaSangre\Http\Controllers\Api'], function ($api) {
     $api->post('register', 'AuthController@register');
     $api->post('login', 'AuthController@login');
-    $api->post('refresh', 'AuthController@refreshToken');
+    $api->get('refresh', 'AuthController@refreshToken');
 
     $api->group(['prefix' => 'geo'], function ($api) {
         $api->get('states', 'GeoController@getStates');
