@@ -85,6 +85,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+    import { uniq } from 'lodash'
     import addWeeks from 'date-fns/add_weeks'
     import format from 'date-fns/format'
     import Datepicker from 'vue-strap/src/Datepicker.vue'
@@ -137,8 +138,8 @@
                                     cities.push(obj.name)
                                     suburbs.push(obj.suburb)
 
-                                    that.cities = cities
-                                    that.suburbs = suburbs
+                                    that.cities = uniq(cities)
+                                    that.suburbs = uniq(suburbs)
                                 })
 
                                 this.donator.state = response[0].state.data.code
