@@ -22,6 +22,7 @@ $api->version('v1', ['namespace' => 'DonaSangre\Http\Controllers\Api'], function
     $api->group(['prefix' => 'geo'], function ($api) {
         $api->get('states', 'GeoController@getStates');
         $api->get('states/{code}', 'GeoController@getState');
+        $api->get('postalcodes/{code}', 'GeoController@searchPostalCode');
     });
 
     $api->group(['middleware' => 'api.auth'], function($api) {
