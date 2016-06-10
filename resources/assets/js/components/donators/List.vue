@@ -27,7 +27,7 @@
     </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
     import auth from '../../services/auth'
 
     export default {

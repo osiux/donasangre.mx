@@ -31,7 +31,7 @@
     </form>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
     import user from '../services/user'
 
     export default {

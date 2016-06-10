@@ -55,7 +55,7 @@
     </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
     import addWeeks from 'date-fns/add_weeks'
     import format from 'date-fns/format'
     import Datepicker from 'vue-strap/src/Datepicker.vue'
