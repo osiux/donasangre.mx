@@ -14,7 +14,7 @@ class CreatePostalCodesTable extends Migration
     {
         Schema::create('postal_codes', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('state', 3)->references('code')->on('states');
+            $table->string('state_code', 3)->references('code')->on('states');
             $table->string('code', 5);
             $table->string('name', 180);
             $table->string('suburb', 180);
@@ -22,7 +22,7 @@ class CreatePostalCodesTable extends Migration
             $table->decimal('longitude', 12, 4);
             $table->tinyInteger('accuracy')->nullable();
 
-            $table->index(['state', 'code']);
+            $table->index(['state_code', 'code']);
         });
     }
 

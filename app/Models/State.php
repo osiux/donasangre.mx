@@ -35,7 +35,7 @@ class State extends Model
      */
     public function postalCodes()
     {
-        return $this->hasMany(PostalCode::class, 'state');
+        return $this->hasMany(PostalCode::class, 'state_code');
     }
 
     /**
