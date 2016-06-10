@@ -85,6 +85,9 @@ class AuthController extends Controller
         return $this->response->array(compact('token'));
     }
 
+    /**
+     * @return mixed
+     */
     public function refreshToken()
     {
         $token = $this->jwtauth->getToken();
