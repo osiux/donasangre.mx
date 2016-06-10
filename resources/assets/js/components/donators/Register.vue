@@ -14,9 +14,38 @@
 
     <div class="col-lg-6">
         <form @submit.prevent="addDonator">
+            <div class="form-group has-feedback">
+                <label for="postalcode">Código Postal</label>
+                <input type="text" name="postalcode" id="postalcode" class="form-control" autocomplete="off" maxlength="5"
+                       v-model="donator.postalcode" @blur="searchByPostalCode" @keyup.enter="searchByPostalCode">
+                <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+                <p class="help-block">Escribe tu código postal para llenar automáticamente los datos.</p>
+            </div>
+
             <div class="form-group">
                 <label for="state">Estado</label>
                 <select name="state" id="state" class="form-control" v-model="donator.state">
+                    <option v-for="state in states" :value="state.code">
+                        {{ state.name }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="city">Municipio/Delegación</label>
+                <select type="text" name="city" id="city" class="form-control" v-model="donator.city" :disabled="disabled">
+                    <option v-for="city in cities" :value="city">
+                        {{ city }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="suburb">Colonia</label>
+                <select type="text" name="suburb" id="suburb" class="form-control" v-model="donator.suburb" :disabled="disabled">
+                    <option v-for="suburb in suburbs" :value="suburb">
+                        {{ suburb }}
+                    </option>
                 </select>
             </div>
 
@@ -60,6 +89,7 @@
     import format from 'date-fns/format'
     import Datepicker from 'vue-strap/src/Datepicker.vue'
     import registered from './Registered.vue'
+    import geo from '../../services/geo'
 
     export default {
         data() {
@@ -67,18 +97,56 @@
             const future = addWeeks(now, 2)
 
             return {
+                states: {},
+                cities: {},
+                suburbs: {},
                 donator: {
+                    postalcode: '',
                     state: '',
+                    city: '',
+                    suburb: '',
                     blood_type: '',
                     show_email: true,
                     show_phone: false,
                     expires_at: format(future, 'YYYY-MM-DD')
-                }
+                },
+                disabled: true
             }
+        },
+        ready() {
+            geo.getStates()
+                .then((response) => {
+                    this.states = response.data
+                })
         },
         methods: {
             addDonator: function() {
 
+            },
+            searchByPostalCode: function() {
+                if ( this.donator.postalcode.length == 5 ) {
+                    geo.searchByPostalCode(this.donator.postalcode)
+                        .then((response) => {
+                            this.disabled = false
+                            if ( response.length > 0 ) {
+                                let cities = []
+                                let suburbs = []
+                                let that = this
+
+                                response.forEach(function(obj) {
+                                    cities.push(obj.name)
+                                    suburbs.push(obj.suburb)
+
+                                    that.cities = cities
+                                    that.suburbs = suburbs
+                                })
+
+                                this.donator.state = response[0].state.data.code
+                                this.donator.city = response[0].name
+                                this.donator.suburb= response[0].suburb
+                            }
+                        })
+                }
             }
         },
         components: {
