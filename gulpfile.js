@@ -2,6 +2,7 @@ var elixir = require('laravel-elixir');
 var gutils = require('gulp-util');
 var b = elixir.config.js.browserify;
 
+require('laravel-elixir-browserify-official');
 require('laravel-elixir-vueify');
 
 if (gutils.env._.indexOf('watch') > -1) {
