@@ -2,6 +2,15 @@ var elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue');
 
+elixir.ready(function() {
+    elixir.config.js.webpack = {
+        loaders: [
+            { test: /\.js$/, loader: 'babel' },
+            { test: /\.vue$/, loader: 'vue' }
+        ]
+    };
+})
+
 elixir(function(mix) {
     mix.sass('app.scss', 'public/css/app.css', false, {
         includePaths: [
