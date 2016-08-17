@@ -1,24 +1,15 @@
 var elixir = require('laravel-elixir');
-var gutils = require('gulp-util');
-var b = elixir.config.js.browserify;
 
-require('laravel-elixir-vueify');
-
-if (gutils.env._.indexOf('watch') > -1) {
-    b.plugins.push({
-        name: "browserify-hmr",
-        options : {}
-    });
-}
+require('laravel-elixir-vue');
 
 elixir(function(mix) {
-    mix.sass('app.scss', 'public/css/app.css', {
+    mix.sass('app.scss', 'public/css/app.css', false, {
         includePaths: [
             './node_modules'
         ]
     });
 
-    mix.browserify('app.js');
+    mix.webpack('app.js');
 
     mix.copy([
         'node_modules/font-awesome/fonts',
