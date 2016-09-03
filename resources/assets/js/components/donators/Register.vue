@@ -88,7 +88,7 @@
     import { uniq } from 'lodash'
     import addWeeks from 'date-fns/add_weeks'
     import format from 'date-fns/format'
-    import Datepicker from 'vue-strap/src/Datepicker.vue'
+    import { datepicker } from 'vue-strap'
     import registered from './Registered.vue'
     import geo from '../../services/geo'
 
@@ -151,7 +151,7 @@
             }
         },
         components: {
-            Datepicker,
+            datepicker,
             registered
         }
     }
