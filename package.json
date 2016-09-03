@@ -5,8 +5,8 @@
     "dev": "gulp watch"
   },
   "devDependencies": {
-    "bootstrap-sass": "^3.3.6",
-    "bootswatch": "^3.3.6",
+    "bootstrap-sass": "^3.3.7",
+    "bootswatch": "^3.3.7",
     "date-fns": "^1.3.0",
     "font-awesome": "^4.6.3",
     "gulp": "^3.9.1",
@@ -14,13 +14,13 @@
     "jquery": "^3.1.0",
     "laravel-elixir": "^6.0.0-10",
     "laravel-elixir-browsersync-official": "^1.0.0",
-    "laravel-elixir-vue": "^0.1.5",
-    "laravel-elixir-webpack-official": "^1.0.2",
+    "laravel-elixir-vue": "^0.1.7",
+    "laravel-elixir-webpack-official": "^1.0.4",
     "local-storage": "^1.4.2",
-    "lodash": "^4.13.1",
+    "lodash": "^4.15.0",
     "nprogress": "^0.2.0",
     "vue-resource": "^0.9.3",
     "vue-router": "^0.7.13",
-    "vue-strap": "^1.0.11"
+    "vue-strap": "^1.1.7"
   }
 }
