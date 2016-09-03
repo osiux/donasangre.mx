@@ -8,13 +8,13 @@ export default {
 
         return Vue.http.get('geo/postalcodes/' + code)
             .then((response) => {
-                return response.data.data
+                return response.json().data
             })
     },
     getStates() {
         return Vue.http.get('geo/states')
             .then((response) => {
-                return response.data
+                return response.json().data
             })
     }
 }

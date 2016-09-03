@@ -11,7 +11,7 @@ export default {
 
         return Vue.http.post('login', credentials)
             .then((response) => {
-                this.authUser(response.data.token)
+                this.authUser(response.json().token)
 
                 return response
             })
@@ -21,7 +21,7 @@ export default {
 
         return Vue.http.post('register', data)
             .then((response) => {
-                this.authUser(response.data.token)
+                this.authUser(response.json().token)
 
                 return response
             })

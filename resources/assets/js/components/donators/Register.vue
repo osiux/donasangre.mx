@@ -117,7 +117,7 @@
         ready() {
             geo.getStates()
                 .then((response) => {
-                    this.states = response.data
+                    this.states = response
                 })
         },
         methods: {

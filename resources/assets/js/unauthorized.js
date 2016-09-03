@@ -4,11 +4,11 @@ import Vue from 'vue'
 import ls from './services/ls'
 
 export default {
-    handle(response){
+    handle(request){
         var self = this;
         var retry = function(respdata) {
-            ls.set('token', respdata.data.token)
-            return self.retry(response.request).then(function(respond){
+            ls.set('token', respdata.json().token)
+            return self.retry(request).then(function(respond){
                 return respond
             });
         }.bind(this);

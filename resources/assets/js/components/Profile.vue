@@ -63,7 +63,7 @@
             getProfile() {
                 user.getProfile()
                     .then((response) => {
-                        this.user = response.data.data
+                        this.user = response.json().data
                     })
                     .catch(() => {
                         this.$router.go('login')
@@ -72,7 +72,7 @@
             updateProfile() {
                 user.updateProfile(this.user)
                     .then((response) => {
-                        this.user = response.data.data
+                        this.user = response.json().data
 
                         this.success = true
 
@@ -83,7 +83,7 @@
                         }, 3000)
                     })
                     .catch((response) => {
-                        this.formErrors = response.data.errors
+                        this.formErrors = response.json().errors
                     })
             }
         }

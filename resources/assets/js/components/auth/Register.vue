@@ -59,7 +59,7 @@
                         this.$router.go('/')
                     })
                     .catch((response) => {
-                        this.formErrors = response.data.errors
+                        this.formErrors = response.json().errors
                     })
             }
         }
